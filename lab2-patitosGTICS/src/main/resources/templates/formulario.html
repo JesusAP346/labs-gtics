@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Configuration</title>
+
+    <style>
+        .input{
+            background-color: #c8dbfc
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-3">
+            <h3>STF GAMES: El escape de los patitos de hule</h3>
+        </div>
+        <div class="row mt-2">
+            <form method="post" action="/mostrarFotografias">
+
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label class="form-label">Número de filas:</label>
+                    </div>
+                    <div class="col-1">
+                        <input name="filas" type="text" class="form-control input" >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label class="form-label">Número de columnas:</label>
+                    </div>
+                    <div class="col-1">
+                        <input name="columnas" type="text" class="form-control input" >
+                    </div>
+                </div>
+                <div class="row mb-3" >
+                    <div class="col-2">
+                        <label class="form-label">Posiciones iniciales: </label>
+                    </div>
+                    <div class="col-2">
+                        <input name="posiciones" type="text" class="form-control " >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label class="form-label">Número de fotos tomadas:</label>
+                    </div>
+                    <div class="col-1">
+                        <input name="fotos" type="text" class="form-control " >
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Ejecutar</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
