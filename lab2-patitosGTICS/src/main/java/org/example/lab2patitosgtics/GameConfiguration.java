@@ -33,28 +33,56 @@ public class GameConfiguration {
         }
     }
 
-    public void iterarHastaTerminar(int[][][] laguna,int[][][] copiaLaguna) {
-        // Copiamos toda la matriz tridimensional
+    public int iterarHastaTerminar(int[][][] laguna,int[][][] copiaLaguna, int numeroFotos) {
+
+        int termina = 0;
+
+        // Copiamos toda la matriz
         copiarLaguna(laguna,copiaLaguna);
-        // Modificamos la laguna con la lógica de contar patitos alrededor
-        for (int k = 0; k < laguna.length - 1; k++) {  // Aseguramos que no excedemos los límites en k+1
+        for (int k = 0; k < laguna.length - 1; k++) {
             copiarLaguna(laguna,copiaLaguna);
             for (int i = 0; i < laguna[0].length; i++) {
                 for (int j = 0; j < laguna[0][0].length; j++) {
                     int cantidad = contarPatitosAlRededor(copiaLaguna, i, j, k);
                     if (cantidad == 3) {
-                        laguna[k + 1][i][j] = 1;  // Actualizamos a la siguiente capa
+                        laguna[k + 1][i][j] = 1;
                     } else if (cantidad < 2 || cantidad > 3) {
-                        laguna[k + 1][i][j] = 0;  // Menos de 2 o más de 3 patitos
+                        laguna[k + 1][i][j] = 0;
                     } else {
-                        laguna[k + 1][i][j] = copiaLaguna[k][i][j];  // Mantiene el estado actual
+                        laguna[k + 1][i][j] = copiaLaguna[k][i][j];
+                    }
+
+
+                    //validamos que si s repiten dos lagunas iguales, entonces se terminó
+                    if(lagunasIguales(copiaLaguna,laguna)){
+                        //System.out.println("termino en la iteracion " + k);
+                        termina=k;
                     }
                 }
             }
         }
 
+        return termina;
 
 
+
+
+    }
+
+    private boolean lagunasIguales(int[][][] copiaLaguna, int[][][] laguna) {
+        boolean sonIguales=true;
+        for (int k = 0; k < laguna.length - 1; k++) {  // Aseguramos que no excedemos los límites en k+1
+            for (int i = 0; i < laguna[0].length; i++) {
+                for (int j = 0; j < laguna[0][0].length; j++) {
+                    if(laguna[k][i][j] != copiaLaguna[k][i][j]){
+                        sonIguales=false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return sonIguales;
     }
 
     private void copiarLaguna(int[][][] laguna, int[][][] copiaLaguna) {
