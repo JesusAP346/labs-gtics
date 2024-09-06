@@ -34,13 +34,16 @@ public class PatitosController {
         int cantidadAMostrar=0;
         if(numeroFinDePatitos == propiedades.getFotos()){
             bandera = 1;
+            model.addAttribute("fotos",numeroFinDePatitos);
         }else{
             if(numeroFinDePatitos < propiedades.getFotos()){
                 bandera = 2;
                 cantidadAMostrar = propiedades.getFotos()-numeroFinDePatitos;
+                model.addAttribute("fotos",propiedades.getFotos());
             }else{
                 bandera = -1;
                 cantidadAMostrar = numeroFinDePatitos - propiedades.getFotos();
+                model.addAttribute("fotos",propiedades.getFotos());
 
             }
         }
@@ -50,7 +53,7 @@ public class PatitosController {
         model.addAttribute("laguna",laguna);
         model.addAttribute("bandera",bandera);
         model.addAttribute("cantidadAMostrar",cantidadAMostrar);
-        model.addAttribute("fotos",propiedades.getFotos());
+
 
 
 
