@@ -53,10 +53,13 @@ public class GameConfiguration {
                     }
 
 
-                    //validamos que si s repiten dos lagunas iguales, entonces se terminó
-                    if(lagunasIguales(copiaLaguna,laguna)){
-                        //System.out.println("termino en la iteracion " + k);
-                        termina=k;
+                    if(k>1){
+                        //validamos que si s repiten dos lagunas iguales, entonces se terminó
+                        if(lagunasIguales(laguna[k],laguna[k-1])){
+                            //System.out.println("termino en la iteracion " + k);
+                            termina=k;
+                            return k;
+                        }
                     }
                 }
             }
@@ -69,15 +72,13 @@ public class GameConfiguration {
 
     }
 
-    private boolean lagunasIguales(int[][][] copiaLaguna, int[][][] laguna) {
+    private boolean lagunasIguales(int[][] copiaLaguna, int[][] laguna) {
         boolean sonIguales=true;
-        for (int k = 0; k < laguna.length - 1; k++) {  // Aseguramos que no excedemos los límites en k+1
-            for (int i = 0; i < laguna[0].length; i++) {
-                for (int j = 0; j < laguna[0][0].length; j++) {
-                    if(laguna[k][i][j] != copiaLaguna[k][i][j]){
-                        sonIguales=false;
-                        break;
-                    }
+        for (int i = 0; i < laguna[0].length; i++) {
+            for (int j = 0; j < laguna[0].length; j++) {
+                if(laguna[i][j] != copiaLaguna[i][j]){
+                    sonIguales=false;
+                    break;
                 }
             }
         }

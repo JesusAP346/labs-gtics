@@ -21,17 +21,39 @@ public class PatitosController {
     @PostMapping("/mostrarFotografias")
     public String formularioPost(PatitosPropiedades propiedades,Model model){
         GameConfiguration config = new GameConfiguration();
-        laguna = new int[propiedades.getFotos()][propiedades.getFilas()][propiedades.getColumnas()];
-        int [][][] copia = new int[propiedades.getFotos()][propiedades.getFilas()][propiedades.getColumnas()];
+        laguna = new int[100][propiedades.getFilas()][propiedades.getColumnas()];
+        int [][][] copia = new int[100][propiedades.getFilas()][propiedades.getColumnas()];
+
         config.ingresarPatosAlaguna(propiedades.getPosiciones(),laguna);
         int numeroFinDePatitos = config.iterarHastaTerminar(laguna,copia,propiedades.getFotos());
 
-        System.out.println("Finaliza en iteracion: " + numeroFinDePatitos);
 
+        //propiedades.getFotos()
+        System.out.println("Finaliza en iteracion: " + numeroFinDePatitos);
+        int bandera;
+        int cantidadAMostrar=0;
+        if(numeroFinDePatitos == propiedades.getFotos()){
+            bandera = 1;
+        }else{
+            if(numeroFinDePatitos < propiedades.getFotos()){
+                bandera = 2;
+                cantidadAMostrar = propiedades.getFotos()-numeroFinDePatitos;
+            }else{
+                bandera = -1;
+                cantidadAMostrar = numeroFinDePatitos - propiedades.getFotos();
+
+            }
+        }
 
 
 
         model.addAttribute("laguna",laguna);
+        model.addAttribute("bandera",bandera);
+        model.addAttribute("cantidadAMostrar",cantidadAMostrar);
+        model.addAttribute("fotos",propiedades.getFotos());
+
+
+
         return "game";
     }
 
